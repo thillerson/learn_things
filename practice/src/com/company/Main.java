@@ -3,6 +3,7 @@ package com.company;
 import com.company.dataStructures.graphs.Graph;
 import com.company.dataStructures.graphs.Node;
 import com.company.dataStructures.lintCode.BinaryTreePaths;
+import com.company.dataStructures.lintCode.Islands;
 
 public class Main {
 
@@ -35,6 +36,7 @@ public class Main {
     }
 
     private static void lintCode() {
-        BinaryTreePaths.test();
+        //BinaryTreePaths.test();
+        Islands.scanMatrix();
     }
 }
