@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.dataStructures.arrays.BinarySearch;
 import com.company.dataStructures.graphs.Graph;
 import com.company.dataStructures.graphs.Node;
 import com.company.dataStructures.lintCode.BinaryTreePaths;
@@ -9,7 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
         //graphTraversal();
-        lintCode();
+        //lintCode();
+        binarySearch();
     }
 
     private static void graphTraversal() {
@@ -39,4 +41,12 @@ public class Main {
         //BinaryTreePaths.test();
         Islands.scanMatrix();
     }
+
+    private static void binarySearch() {
+      int[] list = new int[] {2,4,6,7,9,11,13,44,57,60,67,77,90,99,101,123,127,660};
+      //int[] list = new int[] {1,2,3};
+      boolean found = BinarySearch.listContains(660, list);
+      System.out.printf("\nFound 67: %s", found);
+    }
+
 }
