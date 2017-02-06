@@ -12,7 +12,7 @@ public class BinarySearch {
     System.out.printf("midpoint: %s, candidate: %s, min: %s, max %s\n", midpoint, candidate, min, max);
     if (candidate == target) {
       return true;
-    } else if (min >= max) {
+    } else if (min > max) {
       return  false;
     } else if (target > candidate) {
       System.out.println("Target is greater than candidate, search right");
