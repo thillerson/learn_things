@@ -5,18 +5,21 @@ import com.company.dataStructures.arrays.InsertionSort;
 import com.company.dataStructures.arrays.SelectionSort;
 import com.company.dataStructures.graphs.Graph;
 import com.company.dataStructures.graphs.Node;
+import com.company.dataStructures.linkedLists.LinkedLists;
 import com.company.dataStructures.lintCode.BinaryTreePaths;
 import com.company.dataStructures.lintCode.Islands;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public class Main {
 
   public static void main(String[] args) {
     //graphTraversal();
     //lintCode();
-    selectionSort();
-    insertionSort();
+    //selectionSort();
+    //insertionSort();
+    linkedLists();
     //binarySearch();
   }
 
@@ -67,5 +70,15 @@ public class Main {
     int[] list = {-9000, 3,7,2,9,23,100};
     InsertionSort.sort(list);
     System.out.printf("[insertion] sorted list: %s\n", Arrays.toString(list));
+  }
+
+  private static void linkedLists() {
+    LinkedLists.LinkedListNode farend = new LinkedLists.LinkedListNode("d", Optional.empty() );
+    LinkedLists.LinkedListNode end = new LinkedLists.LinkedListNode("c", Optional.of(farend) );
+    LinkedLists.LinkedListNode middle = new LinkedLists.LinkedListNode("b", Optional.of(end));
+    LinkedLists.LinkedListNode start = new LinkedLists.LinkedListNode("a", Optional.of(middle));
+    System.out.printf("before: %s\n", start);
+    LinkedLists.LinkedListNode reversed = LinkedLists.reverse(start);
+    System.out.printf("reversed: %s\n", reversed);
   }
 }
