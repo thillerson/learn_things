@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.dataStructures.arrays.BinarySearch;
+import com.company.dataStructures.arrays.InsertionSort;
 import com.company.dataStructures.arrays.SelectionSort;
 import com.company.dataStructures.graphs.Graph;
 import com.company.dataStructures.graphs.Node;
@@ -15,8 +16,10 @@ public class Main {
     //graphTraversal();
     //lintCode();
     selectionSort();
+    insertionSort();
     //binarySearch();
   }
+
 
 
   private static void graphTraversal() {
@@ -57,7 +60,12 @@ public class Main {
   private static void selectionSort() {
     int[] list = {9000, 3,7,2,9,23,100};
     SelectionSort.sort(list);
-    System.out.printf("sorted list: %s", Arrays.toString(list));
+    System.out.printf("[selection] sorted list: %s\n", Arrays.toString(list));
   }
 
+  private static void insertionSort() {
+    int[] list = {-9000, 3,7,2,9,23,100};
+    InsertionSort.sort(list);
+    System.out.printf("[insertion] sorted list: %s\n", Arrays.toString(list));
+  }
 }
