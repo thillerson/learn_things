@@ -8,6 +8,7 @@ import com.company.dataStructures.graphs.Node;
 import com.company.dataStructures.linkedLists.LinkedLists;
 import com.company.dataStructures.lintCode.BinaryTreePaths;
 import com.company.dataStructures.lintCode.Islands;
+import com.company.khan.recursion.Palindromes;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -19,11 +20,10 @@ public class Main {
     //lintCode();
     //selectionSort();
     //insertionSort();
-    linkedLists();
+    //linkedLists();
     //binarySearch();
+    palindrome();
   }
-
-
 
   private static void graphTraversal() {
     Graph graph = new Graph();
@@ -81,4 +81,15 @@ public class Main {
     LinkedLists.LinkedListNode reversed = LinkedLists.reverse(start);
     System.out.printf("reversed: %s\n", reversed);
   }
+
+  private static void palindrome() {
+    System.out.printf("rotor is palindrome? %s\n", Palindromes.test("rotor"));
+    System.out.printf("poop is palindrome? %s\n", Palindromes.test("poop"));
+    System.out.printf("pothead is palindrome? %s\n", Palindromes.test("pothead"));
+    System.out.printf("a is palindrome? %s\n", Palindromes.test("a"));
+    System.out.printf("zoom is palindrome? %s\n", Palindromes.test("zoom"));
+    System.out.printf("rot is palindrome? %s\n", Palindromes.test("rot"));
+  }
+
+
 }
