@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.dataStructures.arrays.BinarySearch;
 import com.company.dataStructures.arrays.InsertionSort;
+import com.company.dataStructures.arrays.MergeSort;
 import com.company.dataStructures.arrays.SelectionSort;
 import com.company.dataStructures.graphs.Graph;
 import com.company.dataStructures.graphs.Node;
@@ -22,7 +23,8 @@ public class Main {
     //insertionSort();
     //linkedLists();
     //binarySearch();
-    palindrome();
+    //palindrome();
+    mergeSort();
   }
 
   private static void graphTraversal() {
@@ -70,6 +72,12 @@ public class Main {
     int[] list = {-9000, 3,7,2,9,23,100};
     InsertionSort.sort(list);
     System.out.printf("[insertion] sorted list: %s\n", Arrays.toString(list));
+  }
+
+  private static void mergeSort() {
+    int[] list = {-9000, 3,7,2,9,23,100};
+    MergeSort.mergeSort(list);
+    System.out.printf("[merge] sorted list: %s\n", Arrays.toString(list));
   }
 
   private static void linkedLists() {
