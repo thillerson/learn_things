@@ -1,15 +1,13 @@
 package com.company;
 
-import com.company.dataStructures.arrays.BinarySearch;
-import com.company.dataStructures.arrays.InsertionSort;
-import com.company.dataStructures.arrays.MergeSort;
-import com.company.dataStructures.arrays.SelectionSort;
+import com.company.dataStructures.arrays.*;
 import com.company.dataStructures.graphs.Graph;
 import com.company.dataStructures.graphs.Node;
 import com.company.dataStructures.linkedLists.LinkedLists;
 import com.company.dataStructures.lintCode.BinaryTreePaths;
 import com.company.dataStructures.lintCode.Islands;
 import com.company.khan.recursion.Palindromes;
+import com.sun.xml.internal.bind.v2.model.annotation.Quick;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -24,7 +22,8 @@ public class Main {
     //linkedLists();
     //binarySearch();
     //palindrome();
-    mergeSort();
+    //mergeSort();
+    quickSort();
   }
 
   private static void graphTraversal() {
@@ -78,6 +77,12 @@ public class Main {
     int[] list = {-9000, 3,7,2,9,23,100};
     MergeSort.mergeSort(list);
     System.out.printf("[merge] sorted list: %s\n", Arrays.toString(list));
+  }
+
+  private static void quickSort() {
+    int[] list = {-9000, 3,7,2,9,23,100};
+    QuickSort.quickSort(list);
+    System.out.printf("[quick] sorted list: %s\n", Arrays.toString(list));
   }
 
   private static void linkedLists() {
