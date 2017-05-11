@@ -14,7 +14,7 @@ public class Graph {
         return nodes.size();
     }
 
-    public void addVertex(Node from, Node to) {
+    public void addEdge(Node from, Node to) {
         assert from != null;
         assert to != null;
         from.neigbors.add(to);
