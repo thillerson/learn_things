@@ -34,23 +34,67 @@ public class LinkedListStuff {
     node.next = new Node("fourth");
     node = node.next;
     node.next = new Node("third");
-    removeDupes(head);
+    //removeDupes(head);
     //System.out.printf("After dedupe: %s\n", head);
     //System.out.printf("Third to last: %s\n", kthToLastNode(node, 3));
-    head = new Node("a");
-    node = new Node("b");
+    head = new Node("f");
+    node = new Node("z");
     head.next = node;
-    node.next = new Node("c");
+    node.next = new Node("a");
     node = node.next;
     node.next = new Node("c");
     node = node.next;
-    node.next = new Node("d");
+    node.next = new Node("b");
     node = node.next;
     node.next = new Node("e");
     node = node.next;
     node.next = new Node("f");
     //System.out.printf("Before: %s\n", head);
     //System.out.printf("After: %s\n", removeMiddleNode(head, "c"));
+    System.out.printf("Partitioned: %s\n", partitionList(head, "c"));
+  }
+
+  public static <T extends Comparable<T>> Node<T> partitionList(Node<T> head, T partitionPoint) {
+    if (head == null || partitionPoint == null) return head;
+    Node<T> newHead = head,
+            current = head,
+            previous = null,
+            partitionList = null,
+            partitionEnd = null;
+    do {
+      if (current.value.compareTo(partitionPoint) >= 0) {
+        // if the head is being partitioned, move the new head
+        if (current == newHead) {
+          newHead = newHead.next;
+        }
+        // unhook current node from previous
+        if (previous != null) {
+          previous.next = current.next;
+        }
+        // place in partition list
+        if (partitionList == null) {
+          partitionList = current;
+          partitionEnd = current;
+        } else {
+          partitionEnd.next = current;
+          partitionEnd = partitionEnd.next;
+        }
+        // move current, keeping previous the same
+        current = current.next;
+        // un-hook the removed node's next
+        partitionEnd.next = null;
+      } else {
+        // move previous
+        previous = current;
+        // move current
+        current = current.next;
+      }
+    } while (current != null);
+    if (previous != null) {
+      previous.next = partitionList;
+    }
+
+    return newHead;
   }
 
   public static <T> Node<T> kthToLastNode(Node<T> head, int k) {
