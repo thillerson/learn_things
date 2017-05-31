@@ -51,7 +51,7 @@ public class LinkedListStuff {
     node.next = new Node("f");
     //System.out.printf("Before: %s\n", head);
     //System.out.printf("After: %s\n", removeMiddleNode(head, "c"));
-    System.out.printf("Partitioned: %s\n", partitionList(head, "c"));
+    System.out.printf("Partitioned: %s\n", partitionList(head, "Z"));
   }
 
   public static <T extends Comparable<T>> Node<T> partitionList(Node<T> head, T partitionPoint) {
@@ -94,6 +94,7 @@ public class LinkedListStuff {
       previous.next = partitionList;
     }
 
+    if (newHead == null) newHead = head;
     return newHead;
   }
 
