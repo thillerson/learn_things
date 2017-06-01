@@ -51,7 +51,37 @@ public class LinkedListStuff {
     node.next = new Node("f");
     //System.out.printf("Before: %s\n", head);
     //System.out.printf("After: %s\n", removeMiddleNode(head, "c"));
-    System.out.printf("Partitioned: %s\n", partitionList(head, "Z"));
+    //System.out.printf("Partitioned: %s\n", partitionList(head, "Z"));
+    testSum();
+  }
+
+  private static void testSum() {
+    Node<Integer> left = new Node<>(7);
+    left.next = new Node(1);
+    left.next.next = new Node(6);
+    Node<Integer> right = new Node<>(5);
+    right.next = new Node(9);
+    right.next.next = new Node(2);
+    System.out.printf("Sum = %s", sumLists(left, right));
+  }
+
+  public static Node<Integer> sumLists(Node<Integer> left, Node<Integer> right) {
+    int sum = 0, toCarry = 0;
+    Node<Integer> leftPointer = left,
+                  rightPointer = right,
+                  sumHead = null,
+                  sumPointer = null;
+    sum = leftPointer.value + rightPointer.value;
+    sumHead = new Node<>(sum);
+    sumPointer = sumHead;
+    do {
+      sum = leftPointer.value + rightPointer.value;
+      sumPointer.next = new Node<>(sum);
+      sumPointer = sumPointer.next;
+      leftPointer = leftPointer.next;
+      rightPointer = rightPointer.next;
+    } while (leftPointer != null && rightPointer != null);
+    return sumHead;
   }
 
   public static <T extends Comparable<T>> Node<T> partitionList(Node<T> head, T partitionPoint) {
