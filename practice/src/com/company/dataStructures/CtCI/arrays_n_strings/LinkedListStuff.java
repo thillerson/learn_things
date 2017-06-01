@@ -71,16 +71,27 @@ public class LinkedListStuff {
                   rightPointer = right,
                   sumHead = null,
                   sumPointer = null;
-    sum = leftPointer.value + rightPointer.value;
-    sumHead = new Node<>(sum);
-    sumPointer = sumHead;
     do {
-      sum = leftPointer.value + rightPointer.value;
-      sumPointer.next = new Node<>(sum);
-      sumPointer = sumPointer.next;
-      leftPointer = leftPointer.next;
-      rightPointer = rightPointer.next;
-    } while (leftPointer != null && rightPointer != null);
+      if (leftPointer == null && rightPointer == null) {
+        sum = toCarry;
+      } else {
+        sum = leftPointer.value + rightPointer.value + toCarry;
+        leftPointer = leftPointer.next;
+        rightPointer = rightPointer.next;
+      }
+      toCarry = 0;
+      if (sum > 9) {
+        sum -= 10;
+        toCarry++;
+      }
+      Node<Integer> newSumPosition = new Node<>(sum);
+      if (sumHead == null) {
+        sumHead = sumPointer = newSumPosition;
+      } else {
+        sumPointer.next = newSumPosition;
+        sumPointer = sumPointer.next;
+      }
+    } while (leftPointer != null && rightPointer != null && toCarry > 0);
     return sumHead;
   }
 
