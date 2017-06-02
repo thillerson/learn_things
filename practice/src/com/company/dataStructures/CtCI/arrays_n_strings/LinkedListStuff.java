@@ -2,6 +2,7 @@ package com.company.dataStructures.CtCI.arrays_n_strings;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 public class LinkedListStuff {
 
@@ -62,10 +63,50 @@ public class LinkedListStuff {
     Node<Integer> right = new Node<>(5);
     right.next = new Node(9);
     right.next.next = new Node(2);
-    System.out.printf("Sum = %s", sumLists(left, right));
+    System.out.printf("Sum = %s", sumInOrderLists(left, right));
   }
 
-  public static Node<Integer> sumLists(Node<Integer> left, Node<Integer> right) {
+  public static Node<Integer> sumInOrderLists(Node<Integer> left, Node<Integer> right) {
+    Stack<Integer> rawSums = new Stack<>();
+    Node<Integer> newSumHead = null,
+                  newSumPointer = null,
+                  newSum = null,
+                  leftPointer = left,
+                  rightPointer = right;
+    int carry = 0, leftSum = 0, rightSum = 0, rawSum;
+    do {
+      leftSum = (leftPointer == null) ? 0 : leftPointer.value;
+      rightSum = (rightPointer == null) ? 0 : rightPointer.value;
+      rawSums.push(leftSum + rightSum);
+      leftPointer = leftPointer.next;
+      rightPointer = rightPointer.next;
+    } while (leftPointer != null && rightPointer != null);
+
+    while(!rawSums.empty()) {
+      rawSum = rawSums.pop() + carry;
+      if (rawSum > 9) {
+        rawSum -= 10;
+        carry = 1;
+      } else {
+        carry = 0;
+      }
+      newSum = new Node<>(rawSum);
+      if (newSumHead == null) {
+        newSumHead = newSumPointer = newSum;
+      } else {
+        newSumPointer.next = newSum;
+        newSumPointer = newSumPointer.next;
+      }
+      if (rawSums.empty() && carry == 1) {
+        rawSums.push(carry);
+        carry = 0;
+      }
+    }
+
+    return newSumHead;
+  }
+
+  public static Node<Integer> sumReverseOrderLists(Node<Integer> left, Node<Integer> right) {
     int sum = 0, toCarry = 0;
     Node<Integer> leftPointer = left,
                   rightPointer = right,
