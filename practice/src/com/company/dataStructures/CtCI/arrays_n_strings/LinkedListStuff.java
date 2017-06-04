@@ -1,8 +1,6 @@
 package com.company.dataStructures.CtCI.arrays_n_strings;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 public class LinkedListStuff {
 
@@ -53,7 +51,19 @@ public class LinkedListStuff {
     //System.out.printf("Before: %s\n", head);
     //System.out.printf("After: %s\n", removeMiddleNode(head, "c"));
     //System.out.printf("Partitioned: %s\n", partitionList(head, "Z"));
-    testSum();
+    //testSum();
+    testPalindrome();
+  }
+
+  private static void testPalindrome() {
+    Node<Character> head, node;
+    head = new Node('b');
+    node = new Node('o');
+    head.next = node;
+    node.next = new Node('o');
+    node = node.next;
+    node.next = new Node('z');
+    System.out.printf("Palindrome? : %s\n", isPalindrome(head));
   }
 
   private static void testSum() {
@@ -64,6 +74,56 @@ public class LinkedListStuff {
     right.next = new Node(9);
     right.next.next = new Node(2);
     System.out.printf("Sum = %s", sumInOrderLists(left, right));
+  }
+
+  public static boolean isPalindrome(Node<Character> head)  {
+    if (head == null || head.next == null) return false;
+    Node<Character> pointer = head;
+    Stack<Character> reversed = new Stack<>();
+    do {
+      reversed.push(pointer.value);
+      pointer = pointer.next;
+    } while (pointer != null);
+    pointer = head;
+    boolean possibleMiddleReached = false;
+    do {
+      char  left = pointer.value,
+            right = reversed.pop();
+      if (left != right) {
+        if (possibleMiddleReached) return false;
+        possibleMiddleReached = true;
+      }
+      pointer = pointer.next;
+    } while (pointer != null);
+    return true;
+  }
+
+  public static boolean isPalindromePermutation(Node<Character> head) {
+    if (head == null || head.next == null) return false;
+    Map<Character, Integer> counts = new HashMap<>();
+    Node<Character> pointer = head;
+    do {
+      if ( !counts.containsKey(pointer.value)) {
+        System.out.printf("Setting %s to %s:\n", pointer.value, 1);
+        counts.put(pointer.value, 1);
+      } else {
+        int count = counts.get(pointer.value);
+        counts.put(pointer.value, ++count);
+        System.out.printf("Setting %s to %s:\n", pointer.value, count);
+      }
+      pointer = pointer.next;
+    } while (pointer != null);
+
+    int countOfOdds = 0;
+    for (Integer count : counts.values()) {
+      if (count % 2 != 0) {
+        countOfOdds++;
+        if (countOfOdds > 1) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   public static Node<Integer> sumInOrderLists(Node<Integer> left, Node<Integer> right) {
