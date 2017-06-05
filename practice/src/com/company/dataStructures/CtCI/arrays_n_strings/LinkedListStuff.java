@@ -52,7 +52,19 @@ public class LinkedListStuff {
     //System.out.printf("After: %s\n", removeMiddleNode(head, "c"));
     //System.out.printf("Partitioned: %s\n", partitionList(head, "Z"));
     //testSum();
-    testPalindrome();
+    //testPalindrome();
+    testIntersection();
+  }
+
+  private static void testIntersection() {
+    Node<Character> head, node;
+    head = new Node('b');
+    node = new Node('o');
+    head.next = node;
+    node.next = new Node('o');
+    node = node.next;
+    node.next = new Node('z');
+    System.out.printf("Intersects at? : %s\n", findIntersection(head, head.next));
   }
 
   private static void testPalindrome() {
@@ -74,6 +86,21 @@ public class LinkedListStuff {
     right.next = new Node(9);
     right.next.next = new Node(2);
     System.out.printf("Sum = %s", sumInOrderLists(left, right));
+  }
+
+  private static <T> Node<T> findIntersection(Node<T> left, Node<T> right) {
+    if (left == null || right == null) return null;
+    HashSet<Node<T>> leftLookup = new HashSet<>();
+    Node<T> leftPointer = left,
+            rightPointer = right;
+    do {
+      leftLookup.add(leftPointer);
+      if (leftLookup.contains(leftPointer)) {
+        return leftPointer;
+      }
+      leftPointer = leftPointer.next;
+    } while(leftPointer != null &&);
+    return null;
   }
 
   public static boolean isPalindrome(Node<Character> head)  {
