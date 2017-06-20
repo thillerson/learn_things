@@ -90,17 +90,46 @@ public class LinkedListStuff {
 
   private static <T> Node<T> findIntersection(Node<T> left, Node<T> right) {
     if (left == null || right == null) return null;
-    HashSet<Node<T>> leftLookup = new HashSet<>();
     Node<T> leftPointer = left,
             rightPointer = right;
+    int leftLength = listLength(left),
+        rightLength = listLength(right);
+    if (leftLength > rightLength) {
+      leftPointer = nodeAt(left, leftLength - rightLength);
+    } else {
+      rightPointer = nodeAt(right, rightLength - leftLength);
+    }
     do {
-      leftLookup.add(leftPointer);
-      if (leftLookup.contains(leftPointer)) {
+      if (leftPointer == rightPointer) {
         return leftPointer;
       }
-      leftPointer = leftPointer.next;
-    } while(leftPointer != null &&);
+      if (rightPointer != null) rightPointer = rightPointer.next;
+      if (leftPointer != null) leftPointer = leftPointer.next;
+    } while(leftPointer != null && rightPointer != null);
     return null;
+  }
+
+  private static <T> Node<T> nodeAt(Node<T> list, int index) {
+    if (list == null) return list;
+    Node<T> pointer = list;
+    do {
+      if (index == 0) return pointer;
+      index--;
+      pointer = pointer.next;
+    } while(pointer != null);
+    return null;
+  }
+
+  private static <T> int listLength(Node<T> list) {
+    int length = 0;
+    Node<T> pointer = list;
+    if (pointer != null) {
+      do {
+        length++;
+        pointer = pointer.next;
+      } while (pointer != null);
+    }
+    return length;
   }
 
   public static boolean isPalindrome(Node<Character> head)  {
